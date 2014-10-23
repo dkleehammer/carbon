@@ -6,16 +6,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     </head>
     <body>
+        <div id="test"></div>
+        <div id="test2"></div>
+
         <!-- <script type="text/javascript" src="../lib/src/carbon.js"></script> -->
         <script type="text/javascript" src="../dist/carbon.min.js"></script>
 
         <script type="text/javascript">
-
             // create our test translation service
             carbon.service('translate', function() {
                 this.german = function(val) {
                     if (val == 'Welcome') {
-                        return 'Willkomen';
+                        return 'Willkommen';
                     }
                 }
             });
@@ -23,16 +25,32 @@
             // create our welcome service and test dependency injection
             carbon.service('Welcome', function(translate) {
                 this.hello = function() {
-                    var val = 'Welcome';
-                    console.log(val);
-                    console.log(translate.german(val));
+                    return 'Welcome';
                 }
             }, 'translate');
 
+            // create greetings service with multiple injections
+            carbon.service('greetings', function(welcome, translate) {
+
+                this.test = function() {
+                    var d = document.getElementById('test'),
+                        p = document.createElement('p'),
+                        txt = document.createTextNode(welcome.hello() + ' = ' + translate.german('Welcome'));
+
+                    p.appendChild(txt);
+                    d.appendChild(p);
+                }
+            }, 'Welcome', 'translate');
+
             // create our app and test dependency injection for our start (bootstrap function)
-            var app = carbon.app('TestApp', {}, function(welcome) {
-                welcome.hello();
-            }, 'Welcome');
+            var app = carbon.app('TestApp', {}, function(greetings) {
+                greetings.test();
+            }, 'greetings');
         </script>
+
+        <script>
+            // minification test
+            carbon.service("translate2",function(){this.german=function(e){if(e=="Welcome"){return"Willkommen"}};this.spanish=function(e){if(e=="Welcome"){return"Bienvenidos"}}});carbon.service("Welcome2",function(e){this.hello=function(){return"Welcome"}},"translate2");carbon.service("greetings2",function(e,t){this.test=function(){var n=document.getElementById("test2"),r=document.createElement("p"),i=document.createTextNode(e.hello()+" = "+t.spanish("Welcome"));r.appendChild(i);n.appendChild(r)}},"Welcome2","translate2");var app2=carbon.app("TestApp2",{},function(e){e.test()},"greetings2");
+        </script
     </body>
 </html>

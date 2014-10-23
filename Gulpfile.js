@@ -29,7 +29,7 @@ gulp.task('lint', function() {
 // js
 // ----------------------------------------
 gulp.task('js', ['lint'], function() {
-    gulp.src(['./lib/vendor/**/*.js', './lib/src/**/*.js'])
+    gulp.src(['./lib/vendor/contentloaded2/dist/**/*.js', './lib/src/**/*.js'])
         .pipe(tasks.sourcemaps.init())
         .pipe(tasks.concat(pkg.name + '.min.js'))
         .pipe(tasks.uglify())
