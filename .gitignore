@@ -27,3 +27,7 @@ lib/vendor
 
 # Users Environment Variables
 .lock-wscript
+
+# helper files
+jshint.rc
+.bowerrc
