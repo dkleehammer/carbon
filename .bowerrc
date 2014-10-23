@@ -1,4 +1,4 @@
 {
-    "directory" : "client/vendor",
+    "directory" : "lib/vendor",
     "strict-ssl": false
 }

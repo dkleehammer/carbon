@@ -6,7 +6,33 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     </head>
     <body>
-        <!-- <script type="text/javascript" src="bottle.test.js"></script> -->
-        <script type="text/javascript" src="test2.js"></script>
+        <!-- <script type="text/javascript" src="../lib/src/carbon.js"></script> -->
+        <script type="text/javascript" src="../dist/carbon.min.js"></script>
+
+        <script type="text/javascript">
+
+            // create our test translation service
+            carbon.service('translate', function() {
+                this.german = function(val) {
+                    if (val == 'Welcome') {
+                        return 'Willkomen';
+                    }
+                }
+            });
+
+            // create our welcome service and test dependency injection
+            carbon.service('Welcome', function(translate) {
+                this.hello = function() {
+                    var val = 'Welcome';
+                    console.log(val);
+                    console.log(translate.german(val));
+                }
+            }, 'translate');
+
+            // create our app and test dependency injection for our start (bootstrap function)
+            var app = carbon.app('TestApp', {}, function(welcome) {
+                welcome.hello();
+            }, 'Welcome');
+        </script>
     </body>
 </html>

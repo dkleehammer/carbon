@@ -1,6 +1,7 @@
 {
-  "name": "cs",
+  "name": "carbon",
   "author": "Daniel Kleehammer",
+  "description": "Carbon: A lightweight dependenciy injection library based on bottlejs and angularjs, but without features that are not always used",
   "version": "0.0.1",
   "ignore": [
     "**/.*",
@@ -8,6 +9,6 @@
     "components"
   ],
   "dependencies": {
-    "bottlejs": "~0.5.0"
+    "contentloaded2": "~1.2.2"
   }
 }
