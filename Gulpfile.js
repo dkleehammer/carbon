@@ -34,7 +34,7 @@ gulp.task('js', ['lint'], function() {
         .pipe(tasks.concat(pkg.name + '.min.js'))
         .pipe(tasks.uglify())
         .pipe(tasks.header(header, {pkg: pkg}))
-        .pipe(tasks.sourcemaps.write())
+        .pipe(tasks.sourcemaps.write('.'))
         .pipe(gulp.dest('./dist/'));
 });
 
