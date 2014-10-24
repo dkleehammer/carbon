@@ -26,9 +26,18 @@ gulp.task('lint', function() {
 
 
 // ----------------------------------------
+// test
+// ----------------------------------------
+gulp.task('test', function() {
+    return gulp.src(['./test/*.js'])
+        .pipe(tasks.mocha());
+});
+
+
+// ----------------------------------------
 // js
 // ----------------------------------------
-gulp.task('js', ['lint'], function() {
+gulp.task('js', function() {
     gulp.src('./lib/src/**/*.js')
         .pipe(tasks.sourcemaps.init())
         .pipe(tasks.concat(pkg.name + '.min.js'))
@@ -38,19 +47,11 @@ gulp.task('js', ['lint'], function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-/*
+
 // ----------------------------------------
 // user tasks
 // ----------------------------------------
-gulp.task('default', ['js']);
-
-// ----------------------------------------
-// watch
-// ----------------------------------------
-gulp.task('watch', ['default']);
-*/
-
-gulp.task('default', function() {
+gulp.task('default', ['lint', 'test', 'js'], function() {
     tasks.watch('./lib/src/**/*.js', function(files, cb) {
         gulp.start('js', cb);
     });
