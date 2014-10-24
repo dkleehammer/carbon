@@ -9,10 +9,10 @@ var gulp = require('gulp'),
 // header
 // ----------------------------------------
 var header = ['/**',
-  ' * <%= pkg.name %> - <%= pkg.description %>',
-  ' * @version v<%= pkg.version %>',
-  ' */',
-  ''].join('\n');
+    ' * <%= pkg.name %> - <%= pkg.description %>',
+    ' * @version v<%= pkg.version %>',
+    ' */',
+    ''].join('\n');
 
 
 // ----------------------------------------
@@ -29,7 +29,7 @@ gulp.task('lint', function() {
 // js
 // ----------------------------------------
 gulp.task('js', ['lint'], function() {
-    gulp.src(['./lib/vendor/contentloaded2/dist/**/*.js', './lib/src/**/*.js'])
+    gulp.src('./lib/src/**/*.js')
         .pipe(tasks.sourcemaps.init())
         .pipe(tasks.concat(pkg.name + '.min.js'))
         .pipe(tasks.uglify())
@@ -38,8 +38,20 @@ gulp.task('js', ['lint'], function() {
         .pipe(gulp.dest('./dist/'));
 });
 
-
+/*
 // ----------------------------------------
 // user tasks
 // ----------------------------------------
 gulp.task('default', ['js']);
+
+// ----------------------------------------
+// watch
+// ----------------------------------------
+gulp.task('watch', ['default']);
+*/
+
+gulp.task('default', function() {
+    tasks.watch('./lib/src/**/*.js', function(files, cb) {
+        gulp.start('js', cb);
+    });
+});

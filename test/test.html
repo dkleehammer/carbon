@@ -4,7 +4,7 @@
         <title>TEST</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    </head>
+    </head><!--  -->
     <body>
         <div id="test"></div>
         <div id="test2"></div>
@@ -13,8 +13,22 @@
         <script type="text/javascript" src="../dist/carbon.min.js"></script>
 
         <script type="text/javascript">
+
+            // create text module
+            var Text = carbon.module('Text');
+
+            Text.service('TextService', function() {
+                this.count = function(val) {
+                    return val.length;
+                }
+            });
+
+
+            // create app module, import TextService from Text module
+            var app = carbon.module('App', 'Text.TextService');
+
             // create our test translation service
-            carbon.service('translate', function() {
+            app.service('Translate', function() {
                 this.german = function(val) {
                     if (val == 'Welcome') {
                         return 'Willkommen';
@@ -23,14 +37,14 @@
             });
 
             // create our welcome service and test dependency injection
-            carbon.service('Welcome', function(translate) {
+            app.service('Welcome', function(t) {
                 this.hello = function() {
                     return 'Welcome';
                 }
-            }, 'translate');
+            }, 'Translate');
 
-            // create greetings service with multiple injections
-            carbon.service('greetings', function(welcome, translate) {
+            // create greetings service with multiple injections, including another module (added at app create)
+            app.service('Greetings', function(welcome, translate, TS) {
 
                 this.test = function() {
                     var d = document.getElementById('test'),
@@ -39,18 +53,27 @@
 
                     p.appendChild(txt);
                     d.appendChild(p);
-                }
-            }, 'Welcome', 'translate');
 
-            // create our app and test dependency injection for our start (bootstrap function)
-            var app = carbon.app('TestApp', {}, function(greetings) {
-                greetings.test();
-            }, 'greetings');
+                    var d = document.getElementById('test2'),
+                        p = document.createElement('p'),
+                        txt = document.createTextNode(translate.german('Welcome') + ' contains ' + TS.count(translate.german('Welcome')) + ' letters');
+
+                    p.appendChild(txt);
+                    d.appendChild(p);
+
+                }
+            }, 'Welcome', 'Translate', 'Text.TextService');
+
+
+            // ----------------------------------------
+            // this would be a users application
+            // ----------------------------------------
+            app.providers['Greetings'].test();
+
         </script>
 
-        <script>
-            // minification test
-            carbon.service("translate2",function(){this.german=function(e){if(e=="Welcome"){return"Willkommen"}};this.spanish=function(e){if(e=="Welcome"){return"Bienvenidos"}}});carbon.service("Welcome2",function(e){this.hello=function(){return"Welcome"}},"translate2");carbon.service("greetings2",function(e,t){this.test=function(){var n=document.getElementById("test2"),r=document.createElement("p"),i=document.createTextNode(e.hello()+" = "+t.spanish("Welcome"));r.appendChild(i);n.appendChild(r)}},"Welcome2","translate2");var app2=carbon.app("TestApp2",{},function(e){e.test()},"greetings2");
-        </script
+        <script type="text/javascript">
+
+        </script>
     </body>
 </html>

@@ -6,7 +6,8 @@ A lightweight dependenciy injection library based on bottlejs and angularjs, but
 ###### TODO/REVIEW
 - [x] services
 - [x] factories
-- [x] application
-- [ ] modules
+- [x] modules
 
-How can we make the library easily extendible?  Should modules be a complete instance of carbon and be injectable into applications?  Should the service & factories be application based (instances are not on the global carbon, but rather on each app instance)?
+1. How can we make the library easily extendible?
+2. How do we use modules to start something?  We need a wrapper, but where in module or carbon level?
+3. Should we handle * imports?  Technically it's bad to include all instead of just what you need

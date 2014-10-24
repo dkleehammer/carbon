@@ -8,7 +8,5 @@
     "node_modules",
     "components"
   ],
-  "dependencies": {
-    "contentloaded2": "~1.2.2"
-  }
+  "dependencies": {}
 }
