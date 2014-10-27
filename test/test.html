@@ -16,13 +16,17 @@
 
             // create text module
             var Text = carbon.module('Text');
-
             Text.service('TextService', function() {
                 this.count = function(val) {
                     return val.length;
                 }
             });
 
+            Text.factory('TextFactory', function() {
+                this.count = function(val) {
+                    return val.length;
+                }
+            });
 
             // create app module, import TextService from Text module
             var app = carbon.module('App', 'Text.TextService');

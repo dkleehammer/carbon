@@ -48,11 +48,14 @@ gulp.task('js', function() {
 });
 
 
+gulp.task('dist', ['lint', 'test', 'js']);
+
+
 // ----------------------------------------
 // user tasks
 // ----------------------------------------
 gulp.task('default', ['lint', 'test', 'js'], function() {
     tasks.watch('./lib/src/**/*.js', function(files, cb) {
-        gulp.start('js', cb);
+        gulp.start('dist', cb);
     });
 });
