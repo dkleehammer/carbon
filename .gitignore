@@ -31,3 +31,5 @@ lib/vendor
 # helper files
 jshint.rc
 .bowerrc
+
+.DS_Store

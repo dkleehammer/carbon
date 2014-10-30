@@ -9,15 +9,18 @@ var Util = carbon.module('Util');
 // Services can extend objects
 // ----------------------------------------
 var r = new Rlite();
-var Router = Util.service('Router', r, function() {
-    var _this = this;  // <-- extended object (rlite already contains: add, run, and rules)
+
+Util.service('Router', function(r) {
+    this.add = r.add;
+    this.rules = r.rules;
+    this.run = r.run;
 
     // ----------------------------------------
     // user defined method that will be merged with rlite and cached as a service in the module
     // ----------------------------------------
     this.processHash = function(hash) {
         var hash = location.hash || '#';
-        r.run(hash.substr(1));        
+        r.run(hash.substr(1));
     };
 
     // ----------------------------------------
@@ -27,4 +30,4 @@ var Router = Util.service('Router', r, function() {
         window.addEventListener('hashchange', this.processHash);
         this.processHash();
     }
-});
+}, r);
