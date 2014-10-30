@@ -10,57 +10,44 @@ var Util = carbon.module('Util');
 // ----------------------------------------
 var controller = Util.factory('controller', function(Router) {
     this.register = function(route, fn) {
-        Router.add(route, fn;
+        Router.add(route, fn);
     };
 }, 'Router');
+
+var viewModel = new Vue({
+    el: '#test',
+    data: {
+        title: ''
+    }
+});
 
 // ----------------------------------------
 // home controller
 // ----------------------------------------
-controller.register('', function(v) {
-    var viewModel = new v({
-        el: '#test',
-        data: {
-            title: 'Home page'
-        }
-    });
-}, Vue);
+controller.register('', function() {
+    viewModel.set('title', 'Home page');
+});
 
 // ----------------------------------------
 // test controller
 // ----------------------------------------
-controller.register('test', function(v) {
-    var viewModel = new v({
-        el: '#test',
-        data: {
-            title: 'Test page'
-        }
-    });
-}, Vue);
+controller.register('test', function() {
+    viewModel.set('title', 'Test page');
+});
 
 // ----------------------------------------
 // user controller
 // ----------------------------------------
-controller.register('user', function(v) {
-    var viewModel = new v({
-        el: '#test',
-        data: {
-            title: 'User page'
-        }
-    });
-}, Vue);
+controller.register('user', function() {
+    viewModel.set('title', 'User page');
+});
 
 // ----------------------------------------
 // about controller
 // ----------------------------------------
-controller.register('about', function(v) {
-    var viewModel = new v({
-        el: '#test',
-        data: {
-            title: 'About page'
-        }
-    });
-}, Vue);
+controller.register('about', function() {
+    viewModel.set('title', 'About page');
+});
 
 // ----------------------------------------
 // create a wrapped function to be able to connect user defined methods and di lib
