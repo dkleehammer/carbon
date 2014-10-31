@@ -10,6 +10,7 @@ var chai = require('chai'),
 describe('carbon.module', function() {
     // module with import from other providers
     var m1 = carbon.module('Module1');
+
     m1.service('TestService', function() {
         this.x = function() {
             console.log('Module1.TestService x');
@@ -24,8 +25,7 @@ describe('carbon.module', function() {
 
     it('should return a carbon module', function() {
         expect(m1).to.be.a('object');
-        expect(m1).to.have.property('factories');
-        expect(m1).to.have.property('services');
+        expect(m1).to.have.property('_providers');
     });    
 
     // create our second module injecting a service and factory from our first module
