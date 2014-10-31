@@ -1,7 +1,7 @@
 
 var chai = require('chai'),
     expect = chai.expect,
-    rc = require('../dist/carbon.min.js'),
+    rc = require('../lib/src/carbon.js'),
     carbon = rc.carbon;
 
 // ----------------------------------------
@@ -33,8 +33,8 @@ describe('carbon.module', function() {
 
     describe('carbon.module import different module service and factory', function() {
         it('should contain Module1 TestFactory and TestService', function() {
-            expect(m2.factory('Module1.TestFactory')).to.be.a('object');
             expect(m2.service('Module1.TestService')).to.be.a('object');
+            expect(m2.factory('Module1.TestFactory')).to.be.a('object');
         });
     });
 });

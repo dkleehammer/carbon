@@ -1,5 +1,24 @@
 
+var m1 = carbon.module('M1');
 
+m1.service('First', function() {
+    this.count = 0;
+    this.message = function(msg) {
+        console.log(msg);
+    };
+});
+
+var second = m1.service('Second', function(first) {
+    this.message = function(msg) {
+        first.message(msg);
+    };
+}, 'First');
+
+second.message('chained message testing dependency injection');
+
+
+
+/*
 // ----------------------------------------
 // Access modules created in other files
 // ----------------------------------------
@@ -56,3 +75,4 @@ var app = carbon.wrap(function(router) {
     router.start();
 }, 'Util.Router')();
 
+*/

@@ -1,16 +1,18 @@
 
 var chai = require('chai'),
     expect = chai.expect,
-    rc = require('../dist/carbon.min.js'),
+    rc = require('../lib/src/carbon.js'),
     carbon = rc.carbon;
 
 // ----------------------------------------
 // Unit tests (service)
 // ----------------------------------------
 describe('carbon.module service', function() {
-    var Test = carbon.module('Test');
+    var ServiceTest = carbon.module('ServiceTest');
 
-    var TestService = Test.service('TestService', function() {
+    console.log('ServiceTest providers: ', ServiceTest._providers);
+
+    var TestService = ServiceTest.service('TestService', function() {
         this.count = 0;
 
         this.add = function(num) {
@@ -22,15 +24,16 @@ describe('carbon.module service', function() {
         };        
     });
 
-    var TestFactory = Test.factory('TestFactory', function() {
+    var TestFactory = ServiceTest.factory('TestFactory', function() {
         this.x = function() {
             return true;
         };
     });            
 
     it('should create a service, and be a the same instance each time', function() {
-        var TS1 = Test.service('TestService'),
-            TS2 = Test.service('TestService');
+        var TS1 = ServiceTest.service('TestService'), TS2 = ServiceTest.service('TestService');
+
+        // console.log(TS1, TS2);
 
         // they should both be 0
         expect(TS1.count).to.be.equal(TS2.count);

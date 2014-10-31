@@ -1,7 +1,7 @@
 
 var chai = require('chai'),
     expect = chai.expect,
-    rc = require('../dist/carbon.min.js'),
+    rc = require('../lib/src/carbon.js'),
     carbon = rc.carbon;
 
 // ----------------------------------------
