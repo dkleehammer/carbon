@@ -1,5 +1,6 @@
 
 var m1 = carbon.module('M1');
+console.log(m1);
 
 m1.service('First', function() {
     this.count = 0;
@@ -8,11 +9,13 @@ m1.service('First', function() {
     };
 });
 
-var second = m1.service('Second', function(first) {
+var second = m1.service('Second', function(first, jq) {
     this.message = function(msg) {
         first.message(msg);
+
+        console.log('jquery in Second: ', jq);
     };
-}, 'First');
+}, 'First', jQuery);
 
 second.message('chained message testing dependency injection');
 

@@ -21,6 +21,7 @@
 
         <!-- <script type="text/javascript" src="../../dist/carbon.min.js"></script> -->
         <script type="text/javascript" src="../../lib/src/carbon2.js"></script>
+        <script type="text/javascript" src="static/js/vendor/jquery-2.1.1.min.js"></script>
 
         <!--
         <script type="text/javascript" src="static/js/vendor/rlite.js"></script>
@@ -28,5 +29,60 @@
         <script type="text/javascript" src="static/js/lib/util.js"></script>
         -->
         <script type="text/javascript" src="static/js/single-page-app.js"></script>
+
+        <script type="text/javascript">
+        /*
+            function x() {
+                this.test = function() {
+                    console.log('this is a test');
+                }
+            }
+
+            function z(num) {
+                console.log('z');
+            };
+
+            var y = new x();
+
+            // it's 2:30 in the morning and this is kicking my butt.  I don't understand
+            //    how to tell the difference between jQuery function object or an instantiated class
+
+            try {
+                var a = $,
+                    b = $(),
+                    c = new $(),
+                    d = x,
+                    // e = x(),  // broken
+                    f = new x();
+
+                var l = [a,b,c,d,f];
+
+                // this is how, but a is a function named Empty...?
+                for (var i in l) {
+                    try {
+                        if (Object.getPrototypeOf(l[i]).name === 'Empty') {
+                            console.log(i + ' this is not instantiated... I think having trouble focusing');
+                        } else {
+                            console.log(i + ' instantiated');
+                        }
+                    } catch (e) {
+                        console.error(l[i] + ' is busted');
+                    }
+                }
+
+                // console.log((Object.getPrototypeOf(a).name));
+
+                // console.log('a prototype of: ', Object.getPrototypeOf(a));
+                // console.log('b prototype of: ', Object.getPrototypeOf(b));
+                // console.log('c prototype of: ', Object.getPrototypeOf(c));
+                // console.log('d prototype of: ', Object.getPrototypeOf(d));
+                // // console.log('e prototype of: ', Object.getPrototypeOf(e));
+                // console.log('f prototype of: ', Object.getPrototypeOf(f));
+
+            } catch (e) {
+                console.error(e);
+            }
+            */
+        </script>
     </body>
 </html>
