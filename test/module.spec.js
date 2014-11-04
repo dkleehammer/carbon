@@ -11,6 +11,7 @@ describe('carbon.module', function() {
     // module with import from other providers
     var m1 = carbon.module('Module1');
 
+    // console.log('create TestService in module');
     m1.service('TestService', function() {
         this.x = function() {
             console.log('Module1.TestService x');
@@ -33,6 +34,11 @@ describe('carbon.module', function() {
 
     describe('carbon.module import different module service and factory', function() {
         it('should contain Module1 TestFactory and TestService', function() {
+
+            console.log('before');
+            console.log('m2 providers: ', m2.factory('Module1.TestFactory'));
+            console.log('after');
+
             expect(m2.service('Module1.TestService')).to.be.a('object');
             expect(m2.factory('Module1.TestFactory')).to.be.a('object');
         });

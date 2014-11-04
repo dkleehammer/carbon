@@ -10,8 +10,9 @@ var chai = require('chai'),
 describe('carbon.module service', function() {
     var ServiceTest = carbon.module('ServiceTest');
 
-    console.log('ServiceTest providers: ', ServiceTest._providers);
+    // console.log(ServiceTest._providers);
 
+    // console.log('create TestService in services');
     var TestService = ServiceTest.service('TestService', function() {
         this.count = 0;
 
@@ -28,12 +29,10 @@ describe('carbon.module service', function() {
         this.x = function() {
             return true;
         };
-    });            
+    });
 
     it('should create a service, and be a the same instance each time', function() {
         var TS1 = ServiceTest.service('TestService'), TS2 = ServiceTest.service('TestService');
-
-        // console.log(TS1, TS2);
 
         // they should both be 0
         expect(TS1.count).to.be.equal(TS2.count);
@@ -51,7 +50,7 @@ describe('carbon.module service', function() {
     // factory and service injected into service
     describe('carbon.module service inject factory and service', function() {
         it('should create a factory that has TestService and TestFactory injected into it.', function() {
-            var TestService2 = Test.service('TestService2', function(TestService, TestFactory) {
+            var TestService2 = ServiceTest.service('TestService2', function(TestService, TestFactory) {
                 expect(TestService.x()).to.equal(true);
                 expect(TestFactory.x()).to.equal(true);
             }, 'TestService', 'TestFactory');

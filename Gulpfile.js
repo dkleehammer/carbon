@@ -29,7 +29,7 @@ gulp.task('lint', function() {
 // test
 // ----------------------------------------
 gulp.task('test', function() {
-    return gulp.src(['./test/services.spec.js'])
+    return gulp.src(['./test/module.spec.js'])
         .pipe(tasks.mocha());
 });
 
