@@ -13,10 +13,9 @@ var r = new Rlite();
 Util.service('Router', function(r) {
     this.add = r.add;
     this.rules = r.rules;
-    this.run = r.run;
-
+    
     // ----------------------------------------
-    // user defined method that will be merged with rlite and cached as a service in the module
+    // user defined method that uses an included object, rlite, and cached as a service in the module
     // ----------------------------------------
     this.processHash = function(hash) {
         var hash = location.hash || '#';
@@ -24,7 +23,7 @@ Util.service('Router', function(r) {
     };
 
     // ----------------------------------------
-    // user defined method that will be merged with rlite and cached as a service in the module
+    // user defined method that uses an included object, rlite, and cached as a service in the module
     // ----------------------------------------
     this.start = function() {
         window.addEventListener('hashchange', this.processHash);
