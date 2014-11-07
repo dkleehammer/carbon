@@ -1,7 +1,7 @@
 
 var chai = require('chai'),
     expect = chai.expect,
-    rc = require('../dist/carbon.min.js'),
+    rc = require('../lib/src/carbon.js'),
     carbon = rc.carbon;
 
 // ----------------------------------------
@@ -26,7 +26,7 @@ describe('carbon.module factory', function() {
         this.x = function() {
             return true;
         };
-    });    
+    });
 
     it('should create a factory, and be a different instance each time', function() {
         var TS1 = Test.factory('TestFactory'),

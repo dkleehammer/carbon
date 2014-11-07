@@ -1,0 +1,8 @@
+{
+  "node": true,
+  "browser": true,
+  "esnext": true,
+  "strict": true,
+  "expr": true,
+  "boss": true
+}
