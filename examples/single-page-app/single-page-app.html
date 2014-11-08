@@ -20,7 +20,7 @@
         </div>
 
         <!-- <script type="text/javascript" src="../../dist/carbon.min.js"></script> -->
-        <script type="text/javascript" src="../../lib/src/carbon3.js"></script>
+        <script type="text/javascript" src="../../lib/src/carbon.js"></script>
 
         <script type="text/javascript" src="static/js/vendor/rlite.min.js"></script>
         <!-- 
@@ -30,6 +30,25 @@
         -->
 
         <script type="text/javascript">
+            carbon.module('Util').service('Log', function() {
+                this.log = function(message, type) {
+                    switch(type) {
+                        case "error":
+                            console.error(message);
+                            break;
+                        case "warn":
+                            console.warn(message);
+                            break;
+                        case "info":
+                            console.info(message);
+                            break;
+                        default:
+                            console.log(message);
+                            break;
+                    }
+                };
+            });
+
             var app = carbon.module('TestApp');
             
             // build some services
@@ -38,8 +57,8 @@
                     this.testing = function() {
                         console.log('called in testing');
                     }
-                })            
-                .service('TestService2', function(r, TS1) {
+                })
+                .service('TestService2', function(r, TS1, ULog) {
                     console.log('arguments: ', arguments);
                     this.count = 0;
                     this.add = function(num) {
@@ -48,8 +67,13 @@
 
                     this.run = function() {
                         TS1.testing();
+
+                        ULog.log('this is a test error message', 'error');
+                        ULog.log('this is a test warn message', 'warn');
+                        ULog.log('this is a test info message', 'info');
+                        ULog.log('this is a test default message');
                     };
-                }, Rlite,'TestService1');
+                }, Rlite,'TestService1', 'Util.Log');
 
             // usage
             var T = app.service('TestService2');

@@ -21,7 +21,7 @@ var header = ['/**',
 gulp.task('lint', function() {
     return gulp.src(['./lib/src/**/*.js'])
         .pipe(tasks.jshint())
-        .pipe(tasks.jshint.reporter('default'));
+        .pipe(tasks.jshint.reporter(require('jshint-stylish')));
 });
 
 
