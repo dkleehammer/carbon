@@ -15,7 +15,7 @@ tools are best for this particular project.  Carbon is the right tool for the jo
 carbon.module('Module1', function() {
     return {
         count: 0,
-        add: funciton(num) {
+        add: function(num) {
             this.count += num;
         }
     }; 
@@ -41,8 +41,8 @@ M2.add(5);
 console.info('M1 count: ', M1.count, ' | M2 count: ', M2.count);
 
 // need to create a factory module, aka, a new instance each time?  Return a function instead of an object during module creation.
-carbon.module('Factory1', funciton() {
-    return funciton() {
+carbon.module('Factory1', function() {
+    return function() {
         this.message = 'this is my original message';
     }; 
 });
