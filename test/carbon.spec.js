@@ -34,7 +34,7 @@ describe('Test creating a carbon module', function() {
 describe('Test that module is truly a singleton', function() {
     // ----------------------------------------
     // create a singleton module
-    carbon.module('Module1', function() {
+    carbon.module('SingletonModule', function() {
         return {
             count: 0,
             add: function(num) {
@@ -44,8 +44,8 @@ describe('Test that module is truly a singleton', function() {
     });
 
     it('M1.count should always eqaul M2.count even when adding to M2', function() {
-        var M1 = carbon.module('Module1'),
-            M2 = carbon.module('Module1');
+        var M1 = carbon.module('SingletonModule'),
+            M2 = carbon.module('SingletonModule');
 
         expect(M1.count).to.equal(M2.count);
 
