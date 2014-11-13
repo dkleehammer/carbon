@@ -1,6 +1,6 @@
 ## carbon
 
-An extendible lightweight, unopinionated, module dependenciy injection library.
+An extendible lightweight, unopinionated, module dependency injection library.
 
 ### Why
 
