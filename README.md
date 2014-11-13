@@ -46,7 +46,7 @@ M2.add(5);
 console.info('M1 count: ', M1.count, ' | M2 count: ', M2.count);
 ```
 
-You can also create factory modules that will create a new instance each time you inject it.  Simply return the constructor function instead
+You can also create factory modules that will create a new instance each time you use/inject it.  Simply return the constructor function instead
 of an object.
 ```javascript
 carbon.module('Factory1', function() {
