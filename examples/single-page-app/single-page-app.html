@@ -20,10 +20,80 @@
         </div>
 
         <!-- <script type="text/javascript" src="../../dist/carbon.min.js"></script> -->
-        <script type="text/javascript" src="../../lib/src/carbon3.js"></script>
+        <script type="text/javascript" src="../../lib/src/carbon.js"></script>
 
         <script type="text/javascript">
+            // build the singleton module
+            var x = carbon.module('A', function() {
+                console.log('in singleton module constructor');
 
+                return {
+                    count: 0,
+                    add: function(num) {
+                        this.count += num;
+                    }
+                };
+            });
+
+            // test the module to be a singelton
+            var A  = carbon.module('A'),
+                A2 = carbon.module('A');
+
+            A2.add(1);
+            console.log('A count: ', A.count, ' | A2 count: ', A2.count);
+            A2.add(1);
+            console.log('A count: ', A.count, ' | A2 count: ', A2.count);
+
+
+            // build the factory module
+            carbon.module('B', function() {
+                console.log('in factory module constructor');
+
+                return function() {
+                    this.count = 0;
+                    this.add = function(num) {
+                        this.count += num;
+                    }
+                };
+            });
+
+            // test the module to be a factory
+            var B  = carbon.module('B'),
+                B2 = carbon.module('B');
+
+            B2.add(1);
+            console.log('B count: ', B.count, ' | B2 count: ', B2.count);
+            B2.add(1);
+            console.log('B count: ', B.count, ' | B2 count: ', B2.count);
+
+
+            // test dependencies
+            carbon.module('C', function(A) {
+                console.log('in singleton module constructor including dependency');
+
+                console.log('A in C: ', A);
+
+                // scope changes to C and disconnects from B
+                return {
+                    count: A.count,
+                    add: A.add
+                };
+            }, 'A');
+
+            var C = carbon.module('C');
+
+            console.log('C object: ', C);
+
+            console.log('C A count: ', C.count);
+            C.add(5);
+            console.log('A count: ', A.count, 'C count: ', C.count);
+
+            // doesn't exist
+            try {
+                var D = carbon.module('D');
+            } catch (e) {
+                console.error('caught: ', e);
+            }
         </script>
     </body>
 </html>
