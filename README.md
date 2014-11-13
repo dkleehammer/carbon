@@ -1,6 +1,6 @@
 ## carbon
 
-An extendible lightweight, non-opinionated, module dependenciy injection library and nothing more.
+An extendible lightweight, unopinionated, module dependenciy injection library.
 
 ### Why
 
@@ -119,4 +119,27 @@ Use the Factory module and use message at 'info' level.
 ```javascript
 var F1 = carbon.module('Factory1');
 F1.message('this is my message', 'info');
+```
+
+Need to inject an existing global like jQuery or Backbone?
+```javascript
+carbon.module('jqTest', function(jq) {
+    return {
+        test: function() {
+            console.log(jQuery.fn.jquery);
+        }
+    };
+}, $);
+
+carbon.module('jqTest').test();  // outputs "1.10.2" or whatever version you are running
+
+carbon.module('Backbone', function(bb) {
+    return {
+        test: function() {
+            console.log(Backbone.version);
+        }
+    };
+}, Backbone);
+
+carbon.module('Backbone').test();  // outputs "1.1.2" or whatever version you are running
 ```
