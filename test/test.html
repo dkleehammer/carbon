@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script type="text/javascript" src="../lib/src/carbon.js"></script>
+
+        <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+                carbon.module('Module0', function(m1) {
+                    console.log('m1: ', m1);
+                    return {
+                        test: m1.test
+                    };
+                }, 'Module1');
+
+
+                carbon.module('Module1', function() {
+                    return {
+                        test: true  
+                    };
+                });
+
+                carbon.module('Module2', function() {
+                    return function(value) {
+                        this.test2 = value;
+                    }
+                });
+
+                var x = carbon.module('Module1'),
+                    y = carbon.module('Module1'),
+                    z = carbon.module('Module2'),
+                    aa = carbon.module('Module0'),
+
+                    bb = new z('hi there');
+
+                console.log('carbon: ', carbon);
+                console.log('x: ', x);
+                console.log('y: ', y);
+                console.log('z: ', z);
+                console.log('aa: ', aa);
+                console.log('bb: ', bb);
+            });
+        </script>
+    </body>
+</html>
