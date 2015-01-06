@@ -2,7 +2,7 @@
   "name": "carbon",
   "author": "Daniel Kleehammer",
   "description": "An extendible lightweight, unopinionated, module dependency injection library.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/carbon.min.js",
   "ignore": [
     "**/.*",
