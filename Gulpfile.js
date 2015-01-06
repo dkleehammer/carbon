@@ -10,7 +10,8 @@ var gulp = require('gulp'),
 // ----------------------------------------
 var header = ['/**',
     ' * <%= pkg.name %> - <%= pkg.description %>',
-    ' * @version v<%= pkg.version %>',
+    ' * @author - <%= pkg.author %>',
+    ' * @version - v<%= pkg.version %>',
     ' */',
     ''].join('\n');
 
