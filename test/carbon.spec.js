@@ -72,10 +72,12 @@ describe('Test that module is a factory', function() {
         var M1 = carbon.module('Module2'),
             M2 = carbon.module('Module2');
 
-        expect(M1.count).to.equal(M2.count);
+        var m1 = new M1(), m2 = new M2();
 
-        M2.add(3);
+        expect(m1.count).to.equal(m2.count);
 
-        expect(M1.count).to.not.equal(M2.count);
+        m2.add(3);
+
+        expect(m1.count).to.not.equal(m2.count);
     });
 });
