@@ -33,3 +33,5 @@ jshint.rc
 .bowerrc
 
 .DS_Store
+
+test/test.html
