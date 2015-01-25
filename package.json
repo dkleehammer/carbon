@@ -1,6 +1,6 @@
 {
   "name": "carbon",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "Daniel Kleehammer",
   "description": "An extendible lightweight, unopinionated, module dependency injection library.",
   "main": "index.js",
